@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SNAKE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="loader-ring">
+        <div class="inner-ring"></div>
+      </div>
+      <div class="loader-text">Wczytywanie gry...</div>
+    </div>
+
+    <div id="ui-layout">
+      <aside class="sidebar">
+        <h1>SNAKE</h1>
+        <div class="score">Wynik: <span id="score">0</span></div>
+
+        <div class="options">
+          <label
+            >Motyw:
+            <input type="checkbox" id="themeSwitcher" />
+          </label>
+          <label
+            >Czcionka:
+            <select id="fontSwitcher">
+              <option value="'Orbitron', sans-serif">Orbitron</option>
+              <option value="'Courier New', monospace">Courier New</option>
+              <option value="'Arial', sans-serif">Arial</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="difficulty-buttons">
+          <button onclick="startGame('easy')">Łatwy</button>
+          <button onclick="startGame('medium')">Średni</button>
+          <button onclick="startGame('hard')">Trudny</button>
+        </div>
+
+        <div class="version">v1.0.0</div>
+      </aside>
+
+      <main class="main-content">
+        <canvas id="game-board" width="800" height="600"></canvas>
+
+        <div id="game-over-screen" class="overlay hidden">
+          <div class="game-over-box">
+            <h2>Koniec gry</h2>
+            <p>Wynik: <span id="final-score">0</span></p>
+            <p>Rekord: <span id="high-score">0</span></p>
+            <button onclick="startGame(lastDifficulty)">Zagraj ponownie</button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="scripts/main.js" defer></script>
+  </body>
+</html>
