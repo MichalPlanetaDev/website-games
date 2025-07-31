@@ -1,0 +1,191 @@
+:root {
+  --color-bg: #000;
+  --color-neon: #39ff14;
+  --color-neon-alt: #0ff;
+  --color-shadow: #0f05;
+  --color-danger: #f00;
+  --color-muted: #222;
+  --font-main: "Orbitron", "Courier New", Courier, monospace;
+  --powerup-heal: lime;
+  --powerup-shield: cyan;
+  --powerup-multi: gold;
+  --hud-glow: 0 0 4px #0f0, 0 0 8px #0f0;
+  --btn-glow: 0 0 10px var(--color-neon);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  font-family: var(--font-main);
+  color: var(--color-neon);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#app {
+  width: 600px;
+  height: 800px;
+  position: relative;
+  background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+  border: 3px solid var(--color-neon);
+  box-shadow: 0 0 20px var(--color-shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  background: #000;
+}
+
+#app::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 255, 0, 0.03), rgba(0, 255, 0, 0.03) 1px, transparent 1px, transparent 2px);
+  z-index: 100;
+  mix-blend-mode: screen;
+}
+
+#hud {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-size: 16px;
+  z-index: 80;
+  font-weight: bold;
+  text-shadow: var(--hud-glow);
+}
+
+#bossbar {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 12px;
+  background: #330;
+  border: 1px solid var(--color-danger);
+  box-shadow: 0 0 4px red;
+  z-index: 85;
+  display: none;
+}
+#bossbar .fill {
+  height: 100%;
+  background: red;
+  width: 100%;
+  transition: width 0.3s ease;
+}
+
+#mute {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 18px;
+  background: transparent;
+  border: 2px solid var(--color-neon);
+  color: var(--color-neon);
+  padding: 6px 10px;
+  cursor: pointer;
+  z-index: 90;
+  transition: all 0.2s ease;
+  box-shadow: var(--btn-glow);
+}
+#mute:hover {
+  background: var(--color-neon);
+  color: #000;
+  box-shadow: 0 0 15px var(--color-neon);
+}
+
+.powerup-ui {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  box-shadow: 0 0 8px currentColor;
+}
+.powerup-ui.heal {
+  background: var(--powerup-heal);
+}
+.powerup-ui.shield {
+  background: var(--powerup-shield);
+}
+.powerup-ui.multi {
+  background: var(--powerup-multi);
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadein 0.5s ease;
+}
+
+.screen h1, .screen h2, .screen h3 {
+  color: var(--color-neon);
+  text-shadow: 0 0 5px var(--color-neon), 0 0 10px var(--color-neon);
+  margin: 10px 0;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.screen button {
+  background: transparent;
+  color: var(--color-neon);
+  border: 2px solid var(--color-neon);
+  padding: 12px 24px;
+  font-size: 18px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: var(--btn-glow);
+}
+.screen button:hover {
+  background: var(--color-neon);
+  color: #000;
+  box-shadow: 0 0 20px var(--color-neon);
+  transform: scale(1.05);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px var(--color-neon), 0 0 10px var(--color-neon-alt);
+  }
+  to {
+    text-shadow: 0 0 15px var(--color-neon-alt), 0 0 30px var(--color-neon);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
